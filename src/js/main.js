@@ -16,10 +16,10 @@ body.insertBefore(monTitre, divGlobe);
 
 
 // Partie Haute
-let inputHaut = document.createElement("input");
-inputHaut.setAttribute("id", "haut");
-inputHaut.placeholder = 0;
-divGlobe.appendChild(inputHaut);
+let inputEcran = document.createElement("input");
+inputEcran.setAttribute("id", "haut");
+inputEcran.placeholder = 0;
+divGlobe.appendChild(inputEcran);
 
 // Contenu
 let divBtn = document.createElement("div");
@@ -29,9 +29,11 @@ divGlobe.appendChild(divBtn);
 let tabBut = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "0", "-", "x", "/",  "C", "="];
 
 tabBut.forEach(elem => {
+
     let button = document.createElement("button");
     button.textContent = elem;
     divBtn.appendChild(button);
+
 });
 
 
@@ -41,31 +43,32 @@ let input2 = "";
 let mesButtons = Array.from(document.querySelectorAll("button"));
 let reCompt = 0;
 
+
 // addEventListener
 mesButtons.forEach(ele => {
     ele.addEventListener("click", (e) => {
         if (input1 != "" && input2 != "" && operateur != "" && e.target.textContent == "=") {
-            inputHaut.value = "";
+            inputEcran.value = "";
 
             switch (operateur) {
                 case "+":
-                    inputHaut.value = parseInt(input1) + parseInt(input2);
+                    inputEcran.value = parseInt(input1) + parseInt(input2);
                     break;
 
                 case "-":
-                    inputHaut.value = parseInt(input1) - parseInt(input2);
+                    inputEcran.value = parseInt(input1) - parseInt(input2);
                     break;
 
                 case "x":
-                    inputHaut.value = parseInt(input1) * parseInt(input2);
+                    inputEcran.value = parseInt(input1) * parseInt(input2);
                     break;
 
                 case "*":
-                    inputHaut.value = parseInt(input1) * parseInt(input2);
+                    inputEcran.value = parseInt(input1) * parseInt(input2);
                     break
 
                 case "/":
-                    inputHaut.value = parseInt(input1) / parseInt(input2);
+                    inputEcran.value = parseInt(input1) / parseInt(input2);
                     break;
 
                 default:
@@ -77,31 +80,31 @@ mesButtons.forEach(ele => {
             input1 = "";
             operateur = "";
             input2 = "";
-            inputHaut.value = "";
+            inputEcran.value = "";
             reCompt = 0;
 
         }else if (input1 != "" && operateur != "" && (e.target.textContent != "+" && e.target.textContent != "-" && e.target.textContent != "x" && e.target.textContent != "*" && e.target.textContent != "/")) {
 
             while (reCompt < 1) {
 
-                inputHaut.value = "";
+                inputEcran.value = "";
                 reCompt++;
 
             }
 
-            inputHaut.value += e.target.textContent;
-            input2 = inputHaut.value;
+            inputEcran.value += e.target.textContent;
+            input2 = inputEcran.value;
 
         }else if(input1 != "" && (e.target.textContent == "+" || e.target.textContent == "-" || e.target.textContent == "x" || e.key == "*" || e.target.textContent == "/")){
 
-            inputHaut.value = "";
-            inputHaut.value += e.target.textContent;
-            operateur = inputHaut.value;
+            inputEcran.value = "";
+            inputEcran.value += e.target.textContent;
+            operateur = inputEcran.value;
 
         }else{
 
-            inputHaut.value += e.target.textContent;
-            input1 = inputHaut.value;
+            inputEcran.value += e.target.textContent;
+            input1 = inputEcran.value;
 
         }
         
@@ -111,28 +114,28 @@ mesButtons.forEach(ele => {
 window.addEventListener("keydown" , (e) => {
 
     if (input1 != "" && input2 != "" && operateur != "" && e.key == "=") {
-        inputHaut.value = "";
+        inputEcran.value = "";
 
         switch (operateur) {
 
             case "+":
-                inputHaut.value = parseInt(input1) + parseInt(input2);
+                inputEcran.value = parseInt(input1) + parseInt(input2);
                 break;
 
             case "-":
-                inputHaut.value = parseInt(input1) - parseInt(input2);
+                inputEcran.value = parseInt(input1) - parseInt(input2);
                 break;
 
             case "x":
-                inputHaut.value = parseInt(input1) * parseInt(input2);
+                inputEcran.value = parseInt(input1) * parseInt(input2);
                 break;
 
             case "*":
-                inputHaut.value = parseInt(input1) * parseInt(input2);
+                inputEcran.value = parseInt(input1) * parseInt(input2);
                 break;
 
             case "/":
-                inputHaut.value = parseInt(input1) / parseInt(input2);
+                inputEcran.value = parseInt(input1) / parseInt(input2);
                 break;
 
             default:
@@ -146,31 +149,98 @@ window.addEventListener("keydown" , (e) => {
         operateur = "";
         input2 = "";
 
-        inputHaut.value = "";
+        inputEcran.value = "";
         reCompt = 0;
 
-    }else if (input1 != "" && operateur != "" && (e.key != "+" && e.key != "-" && e.key != "x" && e.key != "*" && e.key != "/")) {
+    }else if (input1 != "" && input2 != "" && operateur != "" && e.key == "Enter"){
+
+        switch (operateur) {
+
+            case "+":
+                inputEcran.value = parseInt(input1) + parseInt(input2);
+                break;
+
+            case "-":
+                inputEcran.value = parseInt(input1) - parseInt(input2);
+                break;
+
+            case "x":
+                inputEcran.value = parseInt(input1) * parseInt(input2);
+                break;
+
+            case "*":
+                inputEcran.value = parseInt(input1) * parseInt(input2);
+                break;
+
+            case "/":
+                inputEcran.value = parseInt(input1) / parseInt(input2);
+                break;
+
+            default:
+                break;
+
+        }        
+
+    } else if (input1 != "" && operateur != "" && (e.key != "+" && e.key != "-" && e.key != "x" && e.key != "*" && e.key != "/")) {
         
         while (reCompt < 1) {
 
-            inputHaut.value = "";
+            inputEcran.value = "";
             reCompt++;
 
         }
 
-        inputHaut.value += e.key;
-        input2 = inputHaut.value;
+        inputEcran.value += e.key;
+        input2 = inputEcran.value;
 
     }else if (input1 != "" && (e.key == "+" || e.key == "-" || e.key == "x" || e.key == "*" || e.key == "/")) {
 
-        inputHaut.value = "";
-        inputHaut.value += e.key;
-        operateur = inputHaut.value;
+        inputEcran.value = "";
+        inputEcran.value += e.key;
+        operateur = inputEcran.value;
 
     }else{
 
-        inputHaut.value += e.key;
-        input1 = inputHaut.value;
+        inputEcran.value += e.key;
+        input1 = inputEcran.value;
 
     }
+});
+// let listeKeycode = mesButtons.map(data => data.dataset.key)
+//     document.addEventListener("keydown", (e) => {
+//         let valeur = e.keyCode.toString();
+//         calculer(valeur);
+//     });
+
+//     document.addEventListener("click", (e) => {
+//         let valeur = e.target.dataset.key;
+//         calculer(valeur);
+//     });
+
+//     let calculer = (valeur) => {
+//         if (listeKeycodes.includes(valeur)) {
+//             switch (valeur) {
+//                 case "8":
+//                     inputEcran.value = "";
+//                     break;
+
+//                 case "=":
+//                     let calcule = eval(inputEcran.value);
+//                     inputEcran.value = calcule;
+//                     break;
+
+//                 default:
+//                     let indexKeycode = listeKeycode.indexOf(valeur);
+//                     let touch = mesButtons[indexKeycode];
+//                     inputEcran.value += touch.innerHTML;
+//                     break;
+//             }
+//         }
+//     }
+
+
+
+// En cas d'erreur d'encodage 
+window.addEventListener("error", (e) => {
+    alert(`Une erreur est survenue dans votre calcul: ` + e.message)
 });
